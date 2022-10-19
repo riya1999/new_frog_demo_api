@@ -6,9 +6,9 @@ import 'dart:io';
 import 'package:dart_frog/dart_frog.dart';
 
 import '../main.dart' as entrypoint;
-import '../routes/categories/index.dart' as categories_index;
+import '../routes/catagories/index.dart' as catagories_index;
 
-import '../routes/categories/_middleware.dart' as categories_middleware;
+import '../routes/catagories/_middleware.dart' as catagories_middleware;
 
 void main() => createServer();
 
@@ -24,13 +24,13 @@ Future<HttpServer> createServer() async {
 Handler buildRootHandler() {
   final pipeline = const Pipeline();
   final router = Router()
-    ..mount('/categories', (context) => buildCategoriesHandler()(context));
+    ..mount('/catagories', (context) => buildCatagoriesHandler()(context));
   return pipeline.addHandler(router);
 }
 
-Handler buildCategoriesHandler() {
-  final pipeline = const Pipeline().addMiddleware(categories_middleware.middleware);
+Handler buildCatagoriesHandler() {
+  final pipeline = const Pipeline().addMiddleware(catagories_middleware.middleware);
   final router = Router()
-    ..all('/', (context) => categories_index.onRequest(context));
+    ..all('/', (context) => catagories_index.onRequest(context,));
   return pipeline.addHandler(router);
 }
