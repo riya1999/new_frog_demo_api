@@ -11,10 +11,6 @@ class DatabaseModel {
     return DatabaseModel(
       id: json['id'] as int,
       name: json['name'] as String,
-
-
-
-
     );
   }
 
